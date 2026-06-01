@@ -3738,7 +3738,7 @@ wheels = [
 
 [[package]]
 name = "scyan"
-version = "1.7.3"
+version = "1.7.7"
 source = { editable = "." }
 dependencies = [
     { name = "anndata" },
