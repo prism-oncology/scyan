@@ -125,8 +125,8 @@ def pop_expressions(
         figsize: Pair `(width, height)` indicating the size of the figure.
         show: Whether or not to display the figure.
     """
-    condition = model.adata.obs[key] == population
-    u_mean = model(condition).mean(dim=0)
+    indices = np.where(model.adata.obs[key] == population)[0]
+    u_mean = model(indices).mean(dim=0)
     values = u_mean.numpy(force=True).clip(-max_value, max_value)
 
     y = np.linspace(-max_value, max_value, num_pieces + 1)
