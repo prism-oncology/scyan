@@ -40,14 +40,14 @@ We use [`pre-commit`](https://pre-commit.com/) to run code quality controls befo
 
 You can set it up at the root of the repository like this:
 ```sh
-pre-commit install
+uv run pre-commit install
 ```
 
 Then, it will run the pre-commit automatically before each commit.
 
 You can also run the pre-commit manually:
 ```sh
-pre-commit run --all-files
+uv run pre-commit run --all-files
 ```
 
 Apart from this, we recommend to follow the standard styling conventions:
