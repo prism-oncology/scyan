@@ -31,7 +31,8 @@ def probs_per_marker(
         figsize: Pair `(width, height)` indicating the size of the figure.
         show: Whether or not to display the figure.
     """
-    u = model(model.adata.obs[key] == population)
+    indices = np.where(model.adata.obs[key] == population)[0]
+    u = model(indices)
 
     log_probs = model.module.prior.log_prob_per_marker(u)
     mean_log_probs = log_probs.mean(dim=0).numpy(force=True)

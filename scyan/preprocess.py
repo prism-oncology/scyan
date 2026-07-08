@@ -45,10 +45,11 @@ def auto_logicle_transform(adata: AnnData, q: float = 0.05, m: float = 4.5, quan
         column = flowutils.transforms.logicle(column, None, t=t, m=m, w=w)
         adata.uns["scyan_logicle"][marker] = [t, m, w]
 
+        marker_index = adata.var_names.get_loc(marker)
         if quantile_clip is None:
-            adata[:, marker] = column
+            adata.X[:, marker_index] = column
         else:
-            adata[:, marker] = column.clip(np.quantile(column, quantile_clip))
+            adata.X[:, marker_index] = column.clip(np.quantile(column, quantile_clip))
 
     if markers_failed:
         log.warning(

@@ -23,15 +23,15 @@ def model() -> Scyan:
     return model
 
 
-def test_kde(model: Scyan, pop: str, ref: str):
+def test_kde(model: Scyan, pop: str):
     scyan.plot.kde(model.adata, pop, show=False)
 
 
-def test_pop_expressions(model: Scyan, pop: str, ref: str):
+def test_pop_expressions(model: Scyan, pop: str):
     scyan.plot.pop_expressions(model, pop, show=False)
 
 
-def test_probs_per_marker(model: Scyan, pop: str, ref: str):
+def test_probs_per_marker(model: Scyan, pop: str):
     scyan.plot.probs_per_marker(model, pop, show=False)
 
 

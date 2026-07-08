@@ -15,20 +15,20 @@ def adata() -> AnnData:
         "scyan_pop": ["a1", "a2", "a2", "a2", "b", "b", "c", "c"],
         "scyan_pop_level": ["A", "A", "A", "A", "B", "B", "C", "C"],
     })
-    values = np.array([[1, 2], [0, 0], [1, 4], [0, 0], [1, 0], [0, 0], [0, 0], [2, 1]])
-    return AnnData(values, obs=obs, dtype=np.float32)
+    values = np.array([[1, 2], [0, 0], [1, 4], [0, 0], [1, 0], [0, 0], [0, 0], [2, 1]], dtype=np.float32)
+    return AnnData(values, obs=obs)
 
 
 def test_count_cell_types(adata: AnnData):
     df = scyan.tools.cell_type_ratios(adata, normalize=False)
 
-    assert all(df[f"{pop} count"][0] == count for pop, count in zip(pop_names, [1, 3, 2, 2]))
+    assert all(df[f"{pop} count"].iloc[0] == count for pop, count in zip(pop_names, [1, 3, 2, 2]))
 
 
 def test_normalize_cell_populations(adata: AnnData):
     df = scyan.tools.cell_type_ratios(adata)
 
-    assert all(df[f"{pop} ratio"][0] == count / 8 for pop, count in zip(pop_names, [1, 3, 2, 2]))
+    assert all(df[f"{pop} ratio"].iloc[0] == count / 8 for pop, count in zip(pop_names, [1, 3, 2, 2]))
 
 
 def test_group_cell_populations(adata: AnnData):
